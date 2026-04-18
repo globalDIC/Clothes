@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GDIC - Premium Clothing & Accessories based in the United States">
+    <title>GDIC • Premium US Clothing & Accessories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+        
+        :root {
+            --tw-color-primary: #d97706; /* gold luxury accent */
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        .tail-container * {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', sans-serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #d97706;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .product-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+        
+        .section-header {
+            position: relative;
+        }
+        
+        .section-header:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #d97706, #f59e0b);
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body class="tail-container bg-zinc-950 text-white">
+    <!-- NAVBAR -->
+    <nav class="bg-black border-b border-amber-900 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-x-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-2xl flex items-center justify-center text-2xl font-bold shadow-inner">👑</div>
+                <h1 class="heading-font text-3xl tracking-tighter">GDIC</h1>
+                <span class="text-xs font-medium uppercase tracking-[2px] bg-amber-900 text-amber-200 px-3 py-1 rounded-3xl">EST. 2026 • USA</span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-x-10 text-lg font-medium">
+                <a href="#" onclick="smoothScrollTo('home')" class="nav-link">Home</a>
+                <a href="#" onclick="smoothScrollTo('clothes')" class="nav-link">Clothes</a>
+                <a href="#" onclick="smoothScrollTo('accessories')" class="nav-link">Accessories</a>
+                <a href="#" onclick="smoothScrollTo('brands')" class="nav-link">US Brands</a>
+                <a href="#" class="nav-link">Journal</a>
+                <a href="#" class="nav-link">About</a>
+            </div>
+
+            <!-- Right side -->
+            <div class="flex items-center gap-x-6">
+                <div onclick="toggleSearch()" class="cursor-pointer hover:text-amber-400">
+                    <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+                </div>
+                <div onclick="fakeCart()" class="cursor-pointer hover:text-amber-400 relative">
+                    <i class="fa-solid fa-shopping-bag text-2xl"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-amber-500 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center">3</span>
+                </div>
+                <a href="#" class="bg-amber-500 hover:bg-amber-400 text-black font-semibold px-8 py-3 rounded-3xl flex items-center gap-x-2">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Account</span>
+                </a>
+
+                <!-- Mobile hamburger -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-3xl">
+                    <i id="hamburger-icon" class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-amber-900 px-8 py-6">
+            <div class="flex flex-col gap-y-6 text-xl">
+                <a href="#" onclick="smoothScrollTo('home');toggleMobileMenu()" class="flex items-center justify-between">Home <i class="fa-solid fa-chevron-right text-amber-400"></i></a>
+                <a href="#" onclick="smoothScrollTo('clothes');toggleMobileMenu()" class="flex items-center justify-between">Clothes <i class="fa-solid fa-chevron-right text-amber-400"></i></a>
+                <a href="#" onclick="smoothScrollTo('accessories');toggleMobileMenu()" class="flex items-center justify-between">Accessories <i class="fa-solid fa-chevron-right text-amber-400"></i></a>
+                <a href="#" onclick="smoothScrollTo('brands');toggleMobileMenu()" class="flex items-center justify-between">US Brands <i class="fa-solid fa-chevron-right text-amber-400"></i></a>
+                <div class="pt-4 border-t border-amber-900 text-sm text-amber-300">Based in the United States • Ships worldwide</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="hero-bg h-screen flex items-center">
+        <div class="max-w-screen-2xl mx-auto px-8 text-center">
+            <div class="max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-x-2 bg-white/10 backdrop-blur-md text-amber-200 text-sm font-medium px-6 py-3 rounded-3xl mb-6">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-400"></span>
+                    </span>
+                    NEW YORK • LOS ANGELES • CHICAGO
+                </div>
+                <h1 class="heading-font text-7xl md:text-8xl font-bold leading-none tracking-tighter mb-6">
+                    PREMIUM CLOTHING &amp;<br>ACCESSORIES
+                </h1>
+                <p class="text-2xl text-amber-100 mb-10">Curated in the United States. Timeless style for the modern icon.</p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="smoothScrollTo('clothes')" 
+                            class="bg-amber-500 hover:bg-amber-400 text-black text-xl font-semibold px-14 py-6 rounded-3xl flex items-center justify-center gap-x-3 group">
+                        SHOP CLOTHES
+                        <i class="fa-solid fa-arrow-right group-active:translate-x-1"></i>
+                    </button>
+                    <button onclick="smoothScrollTo('accessories')" 
+                            class="border-2 border-white hover:bg-white hover:text-black text-xl font-semibold px-14 py-6 rounded-3xl">
+                        BROWSE ACCESSORIES
+                    </button>
+                </div>
+                
+                <div class="mt-12 flex justify-center items-center gap-x-8 text-sm uppercase tracking-widest">
+                    <div class="flex items-center gap-x-2"><i class="fa-solid fa-truck"></i> FREE SHIPPING OVER $150</div>
+                    <div class="flex items-center gap-x-2"><i class="fa-solid fa-shield"></i> 2-YEAR WARRANTY</div>
+                    <div class="flex items-center gap-x-2"><i class="fa-solid fa-rotate"></i> 100-DAY RETURNS</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLOTHES SECTION -->
+    <section id="clothes" class="max-w-screen-2xl mx-auto px-8 py-24 bg-white text-zinc-900">
+        <div class="text-center mb-16">
+            <span class="px-6 py-2 text-xs font-semibold bg-amber-100 text-amber-700 rounded-3xl">UNITED STATES • CURATED</span>
+            <h2 class="heading-font text-6xl font-bold mt-4">Clothes</h2>
+            <p class="text-xl text-zinc-600 mt-4 max-w-lg mx-auto">Click any brand below to shop premium clothing collections from the best American designers and retailers.</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <!-- Nike -->
+            <a href="https://www.nike.com" target="_blank" class="product-card block bg-white rounded-3xl overflow-hidden shadow-xl border border-amber-100">
+                <div class="h-64 bg-[url('https://picsum.photos/id/1005/800/600')] bg-cover bg-center flex items-end p-6">
+                    <div class="bg-black/70 text-white text-xs px-4 py-2 rounded-2xl">NIKE</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-2xl">Nike Performance &amp; Streetwear</h3>
+                    <p class="text-zinc-500 text-sm mt-1">Athletic clothing, sneakers &amp; lifestyle apparel</p>
+                    <div class="flex justify-between items-center mt-6 text-amber-500 font-medium">
+                        SHOP ON NIKE.COM <i class="fa-solid fa-external-link-alt"></i>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Levi's -->
+            <a href="https://www.levi.com" target="_blank" class="product-card block bg-white rounded-3xl overflow-hidden shadow-xl border border-amber-100">
+                <div class="h-64 bg-[url('https://picsum.photos/id/1011/800/600')] bg-cover bg-center flex items-end p-6">
+                    <div class="bg-black/70 text-white text-xs px-4 py-2 rounded-2xl">LEVI'S</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-2xl">Levi's Denim &amp; Classics</h3>
+                    <p class="text-zinc-500 text-sm mt-1">Iconic American jeans &amp; casual wear</p>
+                    <div class="flex justify-between items-center mt-6 text-amber-500 font-medium">
+                        SHOP ON LEVI.COM <i class="fa-solid fa-external-link-alt"></i>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Old Navy -->
+            <a href="https://oldnavy.gap.com" target="_blank" class="product-card block bg-white rounded-3xl overflow-hidden shadow-xl border border-amber-100">
+                <div class="h-64 bg-[url('https://picsum.photos/id/106/800/600')] bg-cover bg-center flex items-end p-6">
+                    <div class="bg-black/70 text-white text-xs px-4 py-2 rounded-2xl">OLD NAVY</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-2xl">Old Navy Everyday Fashion</h3>
+                    <p class="text-zinc-500 text-sm mt-1">Affordable, stylish clothes for the whole family</p>
+                    <div class="flex justify-between items-center mt-6 text-amber-500 font-medium">
+                        SHOP ON OLDNAVY.COM <i class="fa-solid fa-external-link-alt"></i>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Nordstrom -->
+            <a href="https://www.nordstrom.com" target="_blank" class="product-card block bg-white rounded-3xl overflow-hidden shadow-xl border border-amber-100">
+                <div class="h-64 bg-[url('https://picsum.photos/id/201/800/600')] bg-cover bg-center flex items-end p-6">
+                    <div class="bg-black/70 text-white text-xs px-4 py-2 rounded-2xl">NORDSTROM</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-2xl">Nordstrom Designer Clothing</h3>
+                    <p class="text-zinc-500 text-sm mt-1">Premium &amp; luxury fashion from top US brands</p>
+                    <div class="flex justify-between items-center mt-6 text-amber-500 font-medium">
+                        SHOP ON NORDSTROM.COM <i class="fa-solid fa-external-link-alt"></i>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Gap -->
+            <a href="https://www.gap.com" target="_blank" class="product-card block bg-white rounded-3xl overflow-hidden shadow-xl border border-amber-100">
+                <div class="h-64 bg-[url('https://picsum.photos/id/1009/800/600')] bg-cover bg-center flex items-end p-6">
+                    <div class="bg-black/70 text-white text-xs px-4 py-2 rounded-2xl">GAP</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-2xl">Gap Casual Essentials</h3>
+                    <p class="text-zinc-500 text-sm mt-1">Modern American casual clothing</p>
+                    <div class="flex justify-between items-center mt-6 text-amber-500 font-medium">
+                        SHOP ON GAP.COM <i class="fa-solid fa-external-link-alt"></i>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Macy's -->
+            <a href="https://www.macys.com" target="_blank" class="product-card block bg-white rounded-3xl overflow-hidden shadow-xl border border-amber-100">
+                <div class="h-64 bg-[url('https://picsum.photos/id/133/800/600')] bg-cover bg-center flex items-end p-6">
+                    <div class="bg-black/70 text-white text-xs px-4 py-2 rounded-2xl">MACY'S</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-semibold text-2xl">Macy's Fashion &amp; Trends</h3>
+                    <p class="text-zinc-500 text-sm mt-1">Department store clothing for every style</p>
+                    <div class="flex justify-between items-center mt-6 text-amber-500 font-medium">
+                        SHOP ON MACYS.COM <i class="fa-solid fa-external-link-alt"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="https://www.amazon.com/fashion" target="_blank" 
+               class="inline-flex items-center gap-x-3 text-lg font-medium text-amber-600 hover:text-amber-700">
+                Discover 1000+ more US clothing options on Amazon Fashion 
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ACCESSORIES SECTION -->
+    <section id="accessories" class="max-w-screen-2xl mx-auto px-8 py-24">
+        <div class="text-center mb-16">
+            <h2 class="heading-font text-6xl font-bold">Accessories</h2>
+            <p class="text-amber-200 mt-3">Complete your look with premium US-made accessories</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            <a href="https://www.nordstrom.com/browse/men/accessories" target="_blank" class="product-card bg-zinc-900 rounded-3xl p-6 text-center hover:ring-2 hover:ring-amber-400">
+                <div class="text-6xl mb-6">⌚</div>
+                <h4 class="font-semibold text-2xl">Watches</h4>
+                <p class="text-amber-300 text-sm">Fossil • Michael Kors • Citizen</p>
+            </a>
+            <a href="https://www.revolve.com" target="_blank" class="product-card bg-zinc-900 rounded-3xl p-6 text-center hover:ring-2 hover:ring-amber-400">
+                <div class="text-6xl mb-6">👜</div>
+                <h4 class="font-semibold text-2xl">Bags</h4>
+                <p class="text-amber-300 text-sm">Designer handbags &amp; backpacks</p>
+            </a>
+            <a href="https://www.bonobos.com" target="_blank" class="product-card bg-zinc-900 rounded-3xl p-6 text-center hover:ring-2 hover:ring-amber-400">
+                <div class="text-6xl mb-6">👟</div>
+                <h4 class="font-semibold text-2xl">Footwear</h4>
+                <p class="text-amber-300 text-sm">Sneakers &amp; dress shoes</p>
+            </a>
+            <a href="https://www.macys.com/shop/jewelry" target="_blank" class="product-card bg-zinc-900 rounded-3xl p-6 text-center hover:ring-2 hover:ring-amber-400">
+                <div class="text-6xl mb-6">💎</div>
+                <h4 class="font-semibold text-2xl">Jewelry</h4>
+                <p class="text-amber-300 text-sm">Necklaces, rings &amp; bracelets</p>
+            </a>
+            <a href="https://www.gap.com/browse/category.do?cid=1031703" target="_blank" class="product-card bg-zinc-900 rounded-3xl p-6 text-center hover:ring-2 hover:ring-amber-400">
+                <div class="text-6xl mb-6">🕶️</div>
+                <h4 class="font-semibold text-2xl">Sunglasses</h4>
+                <p class="text-amber-300 text-sm">Ray-Ban • Oakley • American brands</p>
+            </a>
+            <a href="https://www.levi.com/US/en_US/clothing/accessories" target="_blank" class="product-card bg-zinc-900 rounded-3xl p-6 text-center hover:ring-2 hover:ring-amber-400">
+                <div class="text-6xl mb-6">🧢</div>
+                <h4 class="font-semibold text-2xl">Hats &amp; Caps</h4>
+                <p class="text-amber-300 text-sm">Classic American headwear</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- US BRANDS DIRECTORY -->
+    <section id="brands" class="bg-black py-24">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="text-center mb-16">
+                <h2 class="heading-font text-6xl font-bold text-white">Featured US Brands</h2>
+                <p class="text-amber-300">Click any logo to visit their official clothing &amp; accessories website</p>
+            </div>
+            
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-8 text-center">
+                <a href="https://www.nike.com" target="_blank" class="flex flex-col items-center group">
+                    <div class="text-7xl mb-3 group-hover:scale-110">⚡</div>
+                    <span class="font-bold text-xl">Nike</span>
+                </a>
+                <a href="https://www.levi.com" target="_blank" class="flex flex-col items-center group">
+                    <div class="text-7xl mb-3 group-hover:scale-110">👖</div>
+                    <span class="font-bold text-xl">Levi's</span>
+                </a>
+                <a href="https://oldnavy.gap.com" target="_blank" class="flex flex-col items-center group">
+                    <div class="text-7xl mb-3 group-hover:scale-110">🧥</div>
+                    <span class="font-bold text-xl">Old Navy</span>
+                </a>
+                <a href="https://www.nordstrom.com" target="_blank" class="flex flex-col items-center group">
+                    <div class="text-7xl mb-3 group-hover:scale-110">🛍️</div>
+                    <span class="font-bold text-xl">Nordstrom</span>
+                </a>
+                <a href="https://www.gap.com" target="_blank" class="flex flex-col items-center group">
+                    <div class="text-7xl mb-3 group-hover:scale-110">🧥</div>
+                    <span class="font-bold text-xl">Gap</span>
+                </a>
+                <a href="https://www.macys.com" target="_blank" class="flex flex-col items-center group">
+                    <div class="text-7xl mb-3 group-hover:scale-110">🛒</div>
+                    <span class="font-bold text-xl">Macy's</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-amber-900 py-20">
+        <div class="max-w-screen-2xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-12">
+            <div>
+                <div class="flex items-center gap-x-3 mb-6">
+                    <div class="w-8 h-8 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-2xl flex items-center justify-center text-2xl">👑</div>
+                    <span class="heading-font text-4xl">GDIC</span>
+                </div>
+                <p class="text-amber-300 text-sm">Premium clothing &amp; accessories based in the United States.<br>Built for those who demand excellence.</p>
+                <p class="mt-8 text-xs text-zinc-500">© 2026 GDIC USA • All Rights Reserved</p>
+            </div>
+            <div>
+                <h5 class="font-semibold mb-4">Shop</h5>
+                <ul class="space-y-2 text-sm text-zinc-400">
+                    <li><a href="#" onclick="smoothScrollTo('clothes')" class="hover:text-white">Clothes</a></li>
+                    <li><a href="#" onclick="smoothScrollTo('accessories')" class="hover:text-white">Accessories</a></li>
+                    <li><a href="https://www.amazon.com/fashion" target="_blank" class="hover:text-white">Amazon Fashion</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-semibold mb-4">Company</h5>
+                <ul class="space-y-2 text-sm text-zinc-400">
+                    <li><a href="#" class="hover:text-white">Our Story</a></li>
+                    <li><a href="#" class="hover:text-white">US Locations</a></li>
+                    <li><a href="#" class="hover:text-white">Sustainability</a></li>
+                    <li><a href="#" class="hover:text-white">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-semibold mb-4">Connect</h5>
+                <div class="flex gap-6 text-2xl text-amber-400">
+                    <i class="fa-brands fa-instagram cursor-pointer hover:text-white"></i>
+                    <i class="fa-brands fa-tiktok cursor-pointer hover:text-white"></i>
+                    <i class="fa-brands fa-x-twitter cursor-pointer hover:text-white"></i>
+                </div>
+                <p class="mt-8 text-xs leading-relaxed text-amber-300">This is a beautiful, fully functional frontend demo.<br>Save as <strong>index.html</strong> and upload to GitHub for instant hosting via GitHub Pages.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function initTailwind() {
+            tailwind.config = {
+                content: [],
+                theme: {
+                    extend: {}
+                }
+            }
+        }
+        
+        function smoothScrollTo(section) {
+            const el = document.getElementById(section);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('hamburger-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.classList.replace('fa-bars', 'fa-xmark');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.replace('fa-xmark', 'fa-bars');
+            }
+        }
+        
+        function toggleSearch() {
+            alert("🔎 Search bar would appear here (demo only - no backend). Try clicking 'Clothes' or any brand card!");
+        }
+        
+        function fakeCart() {
+            const count = document.getElementById('cart-count');
+            let num = parseInt(count.innerText);
+            num++;
+            count.innerText = num;
+            const toast = document.createElement('div');
+            toast.style.cssText = 'position:fixed; bottom:20px; right:20px; background:#d97706; color:black; padding:16px 24px; border-radius:9999px; box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.2); font-weight:600;';
+            toast.innerHTML = '✅ Added to cart (demo) — 0 real checkout since no backend';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+        
+        // Initialize everything
+        window.onload = function() {
+            initTailwind();
+            console.log('%c✅ GDIC Frontend Demo Loaded Successfully! No backend needed.', 'color:#d97706; font-size:13px; font-weight:bold');
+            console.log('👉 Click any "Clothes" card or brand link to be directed to real US clothing websites.');
+        };
+    </script>
+</body>
+</html>
